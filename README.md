@@ -3,9 +3,9 @@ https://github.com/valuvilla/Prueba-de-Nivel-3.git
 
 PREGUNTA 1
 
-| Nombre            |
-|-------------------|
-| Iron Man          |
+| Nombre            | | Utilidad                             |
+|-------------------| |-------------------------------------|
+| Iron Man          | | Lider, misiones de defenda, dominio tecnología avanzada
 | The increible Hulk|
 | Khan              |
 | Thor              |

@@ -29,23 +29,16 @@ def insertar_marvel(raiz, dato):
 
 def buscar_marvel(raiz, dato):
     """busca un nodo en el arbol"""
-    if raiz is None:
-        return None
-    else:
-        while raiz is not None:
-            # si la respuesta a la pregunta es si mover a la izquierda
-            if dato[0] == "si":
-                buscar_marvel(raiz.izq, dato)
-            # si la respuesta a la pregunta es no mover a la derecha
-            else:
-                buscar_marvel(raiz.der, dato)
-            
-    
+    nodo_actual = raiz
+    while nodo_actual is not None:
+        if dato == nodo_actual.info:
+            return nodo_actual
+        # si la respuesta es si busca en el lado izquierdo
+        if dato[0] == "si":
+            nodo_actual = nodo_actual.izq
+        # si la respuesta es no busca en el lado derecho
+        else:
+            nodo_actual = nodo_actual.der
+    return None
 
 
-
-# Agregar los superheroes
-raiz =NodoArbol("¿Es una excelente opción para misiones de destrucción de ejercitos completos?")
-insertar_marvel(raiz, ("si", "Thor"))
-
-print(buscar_marvel(raiz, "¿Es una excelente opción para misiones de destrucción de ejercitos completos?"))

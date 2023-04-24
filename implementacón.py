@@ -61,15 +61,3 @@ class BinaryTree:
 superheroes = ['Thor', 'Hulk', 'Khan', 'Ant-Man', 'Capitán América', 'Capitana Marvel', 'The Winter Soldier', 'Nick Fury']
 tree = BinaryTree()
 
-# Insertar nodos
-tree.insert("¿Necesitas destruir un ejército completo?", "Thor")
-tree.insert("¿Necesitas destruir una gran cantidad de cosas?", "Hulk")
-tree.insert("¿Necesitas realizar una misión intergaláctica en equipo?", "Khan")
-tree.insert("¿Necesitas recuperar algo sin ser detectado?", "Ant-Man")
-tree.insert("¿Necesitas infiltrarte con personas del lugar?", "The Winter Soldier")
-tree.insert("¿Necesitas tomar una decisión rápida y moverte rápidamente?", "Nick Fury")
-tree.insert("¿Necesitas una persona para varias misiones?", "Khan")
-tree.insert("¿Necesitas viajar por las distintas galaxias?", "Capitana Marvel")
-tree.insert("¿Necesitas una persona para comandar misiones de defensa y de recuperación?", "Capitán América")
-
-

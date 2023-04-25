@@ -182,6 +182,13 @@ class nodoArbol(object):
             print(raiz.info)
             nodoArbol.impimir_arbol(raiz.der)
 
+    
+    def contar(raiz, cantidad):
+        if(raiz is not None):
+            nodoArbol.contar(raiz.izq, cantidad)
+            nodoArbol.contar(raiz.der, cantidad)
+            cantidad[0] += 1
+
 
 
 

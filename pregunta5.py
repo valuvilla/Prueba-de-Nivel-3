@@ -166,27 +166,7 @@ class nodoArbol(object):
         else:
             return raiz.altura
         
-    
-    
-    def altura_subarbol(raiz):
-        nodo_actual=nodoArbol(raiz)
-        if nodo_actual is None:
-            return 0
-    
-        pila = [(nodo_actual, 1)]
-        altura_maxima = 0
-        
-        while len(pila) > 0:
-            nodo, altura = pila.pop()
-            altura_maxima = max(altura_maxima, altura)
-            
-            if nodo.izq is not None:
-                pila.append((nodo.izq, altura + 1))
-                
-            if nodo.der is not None:
-                pila.append((nodo.der, altura + 1))
-        
-        return altura_maxima 
+ 
     
     def actualizaraltura(raiz):
         """Actualiza la altura del nodo"""

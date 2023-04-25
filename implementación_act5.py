@@ -6,7 +6,7 @@ from pregunta5 import nodoArbol
 
 raiz = None
 # insertar los 1000 primeros números enteros
-sys.setrecursionlimit(2000)
+sys.setrecursionlimit(5000)
 
 # GENERAR 1000 NUMEROS DE FORMA ALEATORIa
 numeros_aleatorios = [random.randint(1, 1500) for _ in range(0,1001)]
@@ -44,7 +44,7 @@ for i in range(1,4):
 
 # Determinar la altura del subarbol izquiedo y el subarbol derecho
 nodoArbol.actualizaraltura(raiz)
-alt_izq=nodoArbol.altura(raiz)
+alt_izq=nodoArbol.altura_subarbol(raiz.izq)
 alt_der=nodoArbol.altura(raiz.der)
 print(f'La altura del subarbol derecho es {alt_der} y lo del izquierdo es {alt_izq}')
 

@@ -14,16 +14,56 @@ class nodoArbol(object):
         self.altura = 0
 
     def insertar_nodo(raiz, dato):
-        """Inserta un elemento en el árbol"""
-        if (raiz is None):
+        if(raiz is None):
             raiz = nodoArbol(dato)
-        elif (dato < raiz.info):
-            raiz.izq = nodoArbol.insertar_nodo(raiz.izq, dato)
-        elif (dato > raiz.info):
-            raiz.der = nodoArbol.insertar_nodo(raiz.der, dato)
+        else:
+            if(raiz.info > dato):
+                raiz.izq = nodoArbol.insertar_nodo(raiz.izq, dato)
+            else:
+                raiz.der = nodoArbol.insertar_nodo(raiz.der, dato)
+        raiz = nodoArbol.balancear(raiz)
+        nodoArbol.actualizaraltura(raiz)
         return raiz
             
-        
+    def balancear(raiz):
+        """Determina que rotación hay que hacer para balancear el árbol."""
+        if(raiz is not None):
+            if(nodoArbol.altura(raiz.izq)-nodoArbol.altura(raiz.der) == 2):
+                if(nodoArbol.altura(raiz.izq.izq) >= nodoArbol.altura(raiz.izq.der)):
+                    raiz = nodoArbol.rotar_simple(raiz, True)
+                else:
+                    raiz = nodoArbol.rotar_doble(raiz, True)
+            elif(nodoArbol.altura(raiz.der)-nodoArbol.altura(raiz.izq) == 2):
+                if(nodoArbol.altura(raiz.der.der) >= nodoArbol.altura(raiz.der.izq)):
+                    raiz = nodoArbol.rotar_simple(raiz, False)
+                else:
+                    raiz = nodoArbol.rotar_doble(raiz, False)
+        return raiz
+    
+    def rotar_simple(raiz, control):
+        """Realiza una rotación simple de nodos a la derecha o a la izquierda."""
+        if control:
+            aux = raiz.izq
+            raiz.izq = aux.der
+            aux.der = raiz
+        else:
+            aux = raiz.der
+            raiz.der = aux.izq
+            aux.izq = raiz
+        nodoArbol.actualizaraltura(raiz)
+        nodoArbol.actualizaraltura(aux)
+        raiz = aux
+        return raiz
+
+    def rotar_doble(raiz, control):
+        """Realiza una rotación doble de nodos a la derecha o a la izquierda."""
+        if control:
+            raiz.izq = nodoArbol.rotar_simple(raiz.izq, False)
+            raiz = nodoArbol.rotar_simple(raiz, True)
+        else:
+            raiz.der = nodoArbol.rotar_simple(raiz.der, True)
+            raiz = nodoArbol.rotar_simple(raiz, False)
+        return raiz
 
     def eliminar_nodo(raiz, clave):
         """Elimina un elemento del árbol y lo devuelve si lo encuentra"""
@@ -43,6 +83,8 @@ class nodoArbol(object):
                 else:
                     raiz.izq, aux = nodoArbol.reemplazar(raiz.izq)
                     raiz.info = aux.info
+        raiz = nodoArbol.balancear(raiz)
+        nodoArbol.actualizaraltura(raiz)
         return raiz, x
 
 
@@ -61,28 +103,25 @@ class nodoArbol(object):
         return raiz, aux
     
     def por_nivel(raiz):
-        """Realiza el barrido postorden del arbol"""
-        pendientes = Cola()
-        Cola.arribo(pendientes, raiz)
-        while not Cola.cola_vacia(pendientes):
-            nodo = Cola.atencion(pendientes)
+        cola = Cola()
+        Cola.arribo(cola, raiz)
+        while(not Cola.cola_vacia(cola)):
+            nodo = Cola.atencion(cola)
             print(nodo.info)
-            if nodo.izq is not None:
-                Cola.arribo(pendientes, nodo.izq)
-            if nodo.der is not None:
-                Cola.arribo(pendientes, nodo.der)
+            if(nodo.izq is not None):
+                Cola.arribo(cola, nodo.izq)
+            if(nodo.der is not None):
+                Cola.arribo(cola, nodo.der)
 
-    def buscar(raiz, clave):
-        """Devuelve la direccion del elemeto buscado"""
-        pos=None
-        if (raiz is not None):
-            if (raiz.info == clave):
-                pos = raiz
-            elif (clave < raiz.info):
-                pos = nodoArbol.buscar(raiz.izq, clave)
+    def busqueda(raiz, buscado):
+        if(raiz is not None):
+            if(raiz.info == buscado):
+                return raiz
             else:
-                pos = nodoArbol.buscar(raiz.der, clave) 
-        return pos
+                if(raiz.info > buscado):         
+                    return nodoArbol.busqueda(raiz.izq, buscado)
+                else:
+                    return nodoArbol.busqueda(raiz.der, buscado)
     
     def inorden(raiz):
         """Realiza el barrido inorden del arbol"""
@@ -121,21 +160,33 @@ class nodoArbol(object):
             print(raiz.info)
 
     def altura(raiz):
-        """"DEvuelve la altura del nodo"""
+        """"Devuelve la altura del nodo"""
         if (raiz is None):
             return -1
         else:
             return raiz.altura
+        
+    
     
     def altura_subarbol(raiz):
         nodo_actual=nodoArbol(raiz)
         if nodo_actual is None:
             return 0
     
-        altura_izq = nodoArbol.altura_subarbol(nodo_actual.izq)
-        altura_der = nodoArbol.altura_subarbol(nodo_actual.der)
-    
-        return 1 + max(altura_izq, altura_der)
+        pila = [(nodo_actual, 1)]
+        altura_maxima = 0
+        
+        while len(pila) > 0:
+            nodo, altura = pila.pop()
+            altura_maxima = max(altura_maxima, altura)
+            
+            if nodo.izq is not None:
+                pila.append((nodo.izq, altura + 1))
+                
+            if nodo.der is not None:
+                pila.append((nodo.der, altura + 1))
+        
+        return altura_maxima 
     
     def actualizaraltura(raiz):
         """Actualiza la altura del nodo"""

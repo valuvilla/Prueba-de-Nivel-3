@@ -9,7 +9,7 @@ raiz = None
 sys.setrecursionlimit(5000)
 
 # GENERAR 1000 NUMEROS DE FORMA ALEATORIa
-numeros_aleatorios = [random.randint(1, 1500) for _ in range(0,1001)]
+numeros_aleatorios = [random.randint(1, 1500) for _ in range(0,80)]
 for i in numeros_aleatorios:
     raiz=nodoArbol.insertar_nodo(raiz,i)
 

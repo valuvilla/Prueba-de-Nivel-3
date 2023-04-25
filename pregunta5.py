@@ -183,11 +183,54 @@ class nodoArbol(object):
             nodoArbol.impimir_arbol(raiz.der)
 
     
-    def contar(raiz, cantidad):
-        if(raiz is not None):
-            nodoArbol.contar(raiz.izq, cantidad)
-            nodoArbol.contar(raiz.der, cantidad)
-            cantidad[0] += 1
+    def contar_ocurrencias(nodo_actual, elemento):
+        if nodo_actual is None:
+            return 0
+        
+        contador_izq = nodoArbol.contar_ocurrencias(nodo_actual.izq, elemento)
+        contador_der = nodoArbol.contar_ocurrencias(nodo_actual.der, elemento)
+        
+        if nodo_actual.info== elemento:
+            return contador_izq + contador_der + 1
+        else:
+            return contador_izq + contador_der
+        
+    def contar_pares(nodo_actual):
+        if nodo_actual is None:
+            return 0
+        
+        contador_izq = nodoArbol.contar_pares(nodo_actual.izq)
+        contador_der = nodoArbol.contar_pares(nodo_actual.der)
+        
+        if nodo_actual.info % 2 == 0:
+            return contador_izq + contador_der + 1
+        else:
+            return contador_izq + contador_der
+        
+    def contar_impares(nodo_actual):
+        if nodo_actual is None:
+            return 0
+        
+        contador_izq = nodoArbol.contar_impares(nodo_actual.izq)
+        contador_der = nodoArbol.contar_impares(nodo_actual.der)
+        
+        if nodo_actual.info % 2 == 1:
+            return contador_izq + contador_der + 1
+        else:
+            return contador_izq + contador_der
+        
+        
+    def contar_ceros(nodo_actual):
+        if nodo_actual is None:
+            return 0
+        
+        contador_izq = nodoArbol.contar_ceros(nodo_actual.izq)
+        contador_der = nodoArbol.contar_ceros(nodo_actual.der)
+        
+        if nodo_actual.info == 0:
+            return contador_izq + contador_der + 1
+        else:
+            return contador_izq + contador_der
 
 
 

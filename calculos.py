@@ -9,3 +9,6 @@ raiz=insertar_nodo(raiz,a)
 raiz=insertar_nodo(raiz,b)
 raiz=insertar_nodo(raiz,c)
 raiz=insertar_nodo(raiz,d)
+
+
+

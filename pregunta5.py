@@ -127,6 +127,16 @@ class nodoArbol(object):
         else:
             return raiz.altura
     
+    def altura_subarbol(raiz):
+        nodo_actual=nodoArbol(raiz)
+        if nodo_actual is None:
+            return 0
+    
+        altura_izq = nodoArbol.altura_subarbol(nodo_actual.izq)
+        altura_der = nodoArbol.altura_subarbol(nodo_actual.der)
+    
+        return 1 + max(altura_izq, altura_der)
+    
     def actualizaraltura(raiz):
         """Actualiza la altura del nodo"""
         if (raiz is not None):

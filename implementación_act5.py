@@ -43,7 +43,10 @@ for i in range(1,4):
         print("El dato eliminado es: ", dato)
 
 # Determinar la altura del subarbol izquiedo y el subarbol derecho
-nodoArbol.altura()
+nodoArbol.actualizaraltura(raiz)
+alt_izq=nodoArbol.altura(raiz)
+alt_der=nodoArbol.altura(raiz.der)
+print(f'La altura del subarbol derecho es {alt_der} y lo del izquierdo es {alt_izq}')
 
 
     

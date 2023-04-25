@@ -42,5 +42,8 @@ for i in range(1,4):
     if dato is not None:
         print("El dato eliminado es: ", dato)
 
+# Determinar la altura del subarbol izquiedo y el subarbol derecho
+nodoArbol.altura()
+
 
     

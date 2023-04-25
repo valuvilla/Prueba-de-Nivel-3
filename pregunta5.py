@@ -1,3 +1,4 @@
+import random
 import sys
 import unittest
 from tda_colas import Cola
@@ -147,13 +148,24 @@ raiz = None
 # insertar los 1000 primeros números enteros
 sys.setrecursionlimit(2000)
 
-for i in range(0,1001):
+# GENERAR 1000 NUMEROS DE FORMA ALEATORIa
+numeros_aleatorios = [random.randint(1, 1500) for _ in range(0,1001)]
+for i in numeros_aleatorios:
     raiz=nodoArbol.insertar_nodo(raiz,i)
 
-print(("INORDEN").center(35))
+print(("INORDEN").center(50,'-'))
 nodoArbol.inorden(raiz)
 
+print("PREORDEN".center(50, '-'))
+nodoArbol.inorden(raiz)
 
+print("POSTORDEN".center(50,'-'))
+nodoArbol.postorden(raiz)
+
+print("POR NIVELES".center(50,'-'))
+nodoArbol.por_nivel(raiz)
+
+# Determinar si el albol esta cargado o no
 
 
     

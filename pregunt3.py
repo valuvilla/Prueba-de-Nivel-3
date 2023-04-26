@@ -20,6 +20,11 @@ class Arbol:
                 nodo_actual.izquierda = Nodo(valor)
             else:
                 self._agregar(valor, nodo_actual.izquierda)
+        elif valor == nodo_actual.valor:
+            if nodo_actual.izquierda is None:
+                nodo_actual.izquierda = Nodo(valor)
+            else:
+                self._agregar(valor, nodo_actual.izquierda)
         else:
             if nodo_actual.derecha is None:
                 nodo_actual.derecha = Nodo(valor)
@@ -36,8 +41,8 @@ class Arbol:
             try:
                 nodo_actual.valor=int(int(nodo_actual.valor))
                 return int(nodo_actual.valor) + self._sumar(nodo_actual.izquierda) + self._sumar(nodo_actual.derecha)
-            except (TypeError):
-                print("Valor no válido")
+            except (ValueError,TypeError):
+                return "VError: Tipo de dato no válido. "
 
 
     def restar(self):
@@ -50,8 +55,8 @@ class Arbol:
             try:
                 nodo_actual.valor=int(int(nodo_actual.valor))
                 return int(nodo_actual.valor) - self._restar(nodo_actual.izquierda) - self._restar(nodo_actual.derecha)
-            except (ValueError or TypeError) or (ValueError and TypeError):
-                print("Valor no válido")
+            except (ValueError,TypeError):
+                return "Error: Tipo de dato no válido."
 
     def multiplicar(self):
         return self._multiplicar(self.raiz)
@@ -64,7 +69,7 @@ class Arbol:
                 nodo_actual.valor=int(int(nodo_actual.valor))
                 return int(nodo_actual.valor) * self._multiplicar(nodo_actual.izquierda) * self._multiplicar(nodo_actual.derecha)
             except (ValueError,TypeError):
-                print("Valor no válido")
+                return "Error: Tipo de dato no válido."
 
     def dividir(self):
         return self._dividir(self.raiz)
@@ -75,11 +80,18 @@ class Arbol:
         else:
             # Exception handling
             try:
-                nodo_actual.valor=int(int(nodo_actual.valor))
-                nodo_actual.derecha.valor!=0
-                return int(nodo_actual.valor) / self._dividir(nodo_actual.izquierda) / self._dividir(nodo_actual.derecha)
-            except (ZeroDivisionError,TypeError,ValueError):
-                print("No se puede realizar la operación")
+                resultado=int(nodo_actual.valor) / self._dividir(nodo_actual.izquierda) * self._dividir(nodo_actual.derecha)
+                return resultado
+            except (TypeError,ValueError):
+                print ("Error: Tipo de dato no válido.")
+            except ZeroDivisionError:
+                print ("Error: No es posible dividir entre cero.")
+
+
+    
+
+            
+
 
 arbol_suma=Arbol()
 arbol_resta=Arbol()
@@ -94,9 +106,13 @@ arbol_resta.agregar(str(b))
 arbol_resta.agregar(d)
 arbol_multiplicacion.agregar(b)
 arbol_multiplicacion.agregar(b)
-arbol_division.agregar(str(a))
+arbol_division.agregar(a)
+arbol_division.agregar(c)
+
 
 
 print(arbol_suma.sumar())
-arbol_resta.restar()
+print(arbol_resta.restar())
+print(arbol_multiplicacion.multiplicar())
+(arbol_division.dividir())
     

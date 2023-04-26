@@ -30,6 +30,9 @@ class Nodo:
         resultado = Nodo(self.valor / otro.valor)
         self.memo[(self.valor, otro.valor)] = resultado
         return resultado
+
+
+    
     
     def Excepciones(self, otro):
         if (self.valor, otro.valor) in self.memo:

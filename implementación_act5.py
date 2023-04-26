@@ -9,7 +9,7 @@ raiz = None
 sys.setrecursionlimit(5000)
 
 # GENERAR 1000 NUMEROS DE FORMA ALEATORIa
-numeros_aleatorios = [random.randint(1, 1500) for _ in range(10)] # porque razon se debe poner 1003 para conseguir 1000 numeros
+numeros_aleatorios = [random.randint(1, 1500) for _ in range(1000)] # porque razon se debe poner 1003 para conseguir 1000 numeros
 for i in numeros_aleatorios:
     raiz=nodoArbol.insertar_nodo(raiz,i)
 
@@ -17,13 +17,13 @@ print(("INORDEN").center(50,'-'))
 nodoArbol.inorden(raiz)
 
 print("PREORDEN".center(50, '-'))
-#nodoArbol.inorden(raiz)
+nodoArbol.inorden(raiz)
 
 print("POSTORDEN".center(50,'-'))
-#nodoArbol.postorden(raiz)
+nodoArbol.postorden(raiz)
 
 print("POR NIVELES".center(50,'-'))
-#nodoArbol.por_nivel(raiz)
+nodoArbol.por_nivel(raiz)
 
 # Determinar si un número esta cargado en el arbol o no
 # buscar en el arbol
@@ -60,6 +60,4 @@ print(f'El valor {valor} se repite {ocurrencias} veces')
 print("Contar cuántos números pares e impares hay en el árbol")
 pares=nodoArbol.contar_pares(raiz)
 impares=nodoArbol.contar_impares(raiz)
-ceros=nodoArbol.contar_ceros(raiz)
-print(pares+impares+ceros)
 print(f'Hay {pares} números pares y {impares} números impares')

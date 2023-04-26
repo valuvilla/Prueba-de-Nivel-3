@@ -220,17 +220,6 @@ class nodoArbol(object):
             return contador_izq + contador_der
         
         
-    def contar_ceros(nodo_actual):
-        if nodo_actual is None:
-            return 0
-        
-        contador_izq = nodoArbol.contar_ceros(nodo_actual.izq)
-        contador_der = nodoArbol.contar_ceros(nodo_actual.der)
-        
-        if nodo_actual.info == 0:
-            return contador_izq + contador_der + 1
-        else:
-            return contador_izq + contador_der
 
 
 

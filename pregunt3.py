@@ -50,7 +50,7 @@ class Arbol:
             try:
                 nodo_actual.valor=int(int(nodo_actual.valor))
                 return int(nodo_actual.valor) - self._restar(nodo_actual.izquierda) - self._restar(nodo_actual.derecha)
-            except (ValueError,TypeError):
+            except (ValueError or TypeError) or (ValueError and TypeError):
                 print("Valor no válido")
 
     def multiplicar(self):

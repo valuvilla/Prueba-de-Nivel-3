@@ -70,6 +70,19 @@ class Arbol:
                 return int(nodo_actual.valor) * self._multiplicar(nodo_actual.izquierda) * self._multiplicar(nodo_actual.derecha)
             except (ValueError,TypeError):
                 return "Error: Tipo de dato no válido."
+            
+    def multiplicar_por_si_mismo(self):
+        return self._multiplicar_por_si_mismo(self.raiz)
+    
+    def _multiplicar_por_si_mismo(self, nodo_actual):
+        if nodo_actual is None:
+            return 0
+        else:    
+            try:
+                nodo_actual.valor=int(int(nodo_actual.valor))
+                return int(nodo_actual.valor) * int(nodo_actual.valor) * self._multiplicar_por_si_mismo(nodo_actual.izquierda) * self._multiplicar_por_si_mismo(nodo_actual.derecha)
+            except (ValueError,TypeError):
+                return "Error: Tipo de dato no válido."
 
     def dividir(self):
         return self._dividir(self.raiz)
@@ -105,7 +118,6 @@ arbol_suma.agregar((b))
 arbol_resta.agregar(str(b))
 arbol_resta.agregar(d)
 arbol_multiplicacion.agregar(b)
-arbol_multiplicacion.agregar(b)
 arbol_division.agregar(a)
 arbol_division.agregar(c)
 
@@ -113,6 +125,6 @@ arbol_division.agregar(c)
 
 print(arbol_suma.sumar())
 print(arbol_resta.restar())
-print(arbol_multiplicacion.multiplicar())
+print(arbol_multiplicacion.multiplicar_por_si_mismo())
 (arbol_division.dividir())
     
